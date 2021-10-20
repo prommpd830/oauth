@@ -18,7 +18,8 @@ class Auth extends BaseController
         $this->googleClient = new \Google_Client();
         $this->googleClient->setClientId("946921145835-ctdhaf5j7doqgjdthn3u5r3gndhlkibq.apps.googleusercontent.com");
         $this->googleClient->setClientSecret("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");
-        $this->googleClient->setRedirectUri("https://b7f4-140-213-51-229.ngrok.io/public/auth/google");
+        // $this->googleClient->setRedirectUri("https://b7f4-140-213-51-229.ngrok.io/public/auth/google");
+        $this->googleClient->setRedirectUri("http://localhost:8080/auth/google");
         $this->googleClient->addScope("email");
         $this->googleClient->addScope("profile");
         // api facebook
@@ -90,7 +91,8 @@ class Auth extends BaseController
                 'title' => 'Login',
                 'validation' => $this->validation,
                 'googleUrl' => $this->googleClient->createAuthUrl(),
-                'facebookUrl' => $this->fb_helper->getLoginUrl('https://b7f4-140-213-51-229.ngrok.io/public/auth/facebook?', $fb_permission)
+                // 'facebookUrl' => $this->fb_helper->getLoginUrl('https://b7f4-140-213-51-229.ngrok.io/public/auth/facebook?', $fb_permission)
+                'facebookUrl' => $this->fb_helper->getLoginUrl('http://localhost:8080/auth/facebook?', $fb_permission)
             ];
 
             return view('auth/login', $data);
